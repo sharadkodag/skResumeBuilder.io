@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var gender = null;
+        function onBack(){
+            window.open("./index.html", "_self");
+        }
+
+        function onSubmitForm(){
+            if(validateForm())
+            {
+                localStorage.setItem("name", document.getElementById('name').value);
+                localStorage.setItem("address", document.getElementById('address').value);
+                localStorage.setItem("edu", document.getElementById('edu').value);
+                localStorage.setItem("email", document.getElementById('email').value);
+                localStorage.setItem("contact", document.getElementById('contact').value);
+                localStorage.setItem("exp", document.getElementById('exp').value);
+                localStorage.setItem("objective", document.getElementById('objective').value);
+                localStorage.setItem("declaration", document.getElementById('declaration').value);
+                localStorage.setItem("skill", document.getElementById('skill').value);
+                localStorage.setItem("gender", gender);
+                localStorage.setItem("dob", document.getElementById('dob').value);
+                localStorage.setItem("nationality", document.getElementById('nationality').value);
+                localStorage.setItem("lang", document.getElementById('lang').value);
+                localStorage.setItem("marital", document.getElementById('marital').value);
+                window.open("./cv.html", "_self");
+            }
+        }
+
+        function validateForm(){
+            var address = document.forms["form"]["address"].value;
+            if(document.getElementById('gen1').checked){
+                gender = document.getElementById('gen1').value
+            }else if(document.getElementById('gen2').checked){
+                gender = document.getElementById('gen2').value
+            }
+            console.log(gender);
+            var contact = document.forms['form']['contact'].value;
+            var name = document.forms['form']['name'].value;
+            var edu = document.forms['form']['edu'].value;
+            var email = document.forms['form']['email'].value;
+            var objective = document.forms['form']['objective'].value;
+            var declaration = document.forms['form']['declaration'].value;
+            var lang = document.forms['form']['lang'].value;
+            var dob = document.forms['form']['dob'].value;
+            return address != "" && gender != null && contact != "" && name != "" && edu != "" && email != ""
+            && objective != "" && declaration != "" && lang != "" && dob != "";
+        }
+    </script>
+    <style>
+        .cvInput{
+            width: 100%;
+            display: block;
+            height: 2rem;
+        }
+        .inputBlock{
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="onBack()" style="border-radius: 50%;">&laquo;</button>
+    <h1 style="text-align: center; background-image: linear-gradient(to right, rgba(255, 0,0,0), rgb(255, 140, 0), rgba(255, 0,0,0));
+    color: white; height: 3rem;">Fill your details</h1>
+    <form name="form" onsubmit="return false">
+        <div style="display: flex;">
+            <div style="flex: 1;">
+                <div class="inputBlock">
+                    <label>Objective</label>
+                    <input required id="objective" type="text" class="cvInput" value="A challenging position that will utilize my extensive technical skill and will lead me to innovative work 
+                    environment and help me to achieve personal as well as organizational goals.">
+                </div>
+                <div class="inputBlock">
+                    <label>Address</label>
+                    <input required id="address" type="text" class="cvInput">
+                </div>
+                <div class="inputBlock">
+                    <label>Contact Number</label>
+                    <input required id="contact" type="text" class="cvInput">
+                </div>
+                <div class="inputBlock">
+                    <label>Date of birth</label>
+                    <input required id="dob" type="date" class="cvInput">
+                </div>
+                <div class="inputBlock">
+                    <label>Nationality</label>
+                    <select name="" id="nationality" class="cvInput">
+                        <option value="Indian">Indian</option>
+                        <option value="Other citizen">Other citizen</option>
+                    </select>
+                </div>
+                <div class="inputBlock">
+                    <label>Experience</label>
+                    <textarea id="exp" type="text" class="cvInput"></textarea>
+                </div>
+                <div class="inputBlock">
+                    <label>Known languages</label>
+                    <input required id="lang" type="text" class="cvInput">
+                </div>
+            </div>
+            <div style="flex: 1;">
+                <div class="inputBlock">
+                    <label>Name</label>
+                    <input required id="name" type="text" class="cvInput">
+                </div>
+                <div class="inputBlock">
+                    <label>Email address</label>
+                    <input required id="email" type="text" class="cvInput">
+                </div>
+                <div class="inputBlock">
+                    <label style="display: block;">Gender</label>
+                    <div class="cvInput">
+                        <br>
+                        Male <input type="radio" name="gen" id="gen1" value="Male">
+                        Female <input required type="radio" name="gen" id="gen2" value="Female">
+                    </div>
+                </div>
+                <div class="inputBlock">
+                    <label>Marital stauts</label>
+                    <select name="" id="marital" class="cvInput">
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+                <div class="inputBlock">
+                    <label>Skill</label>
+                    <textarea id="skill" type="text" class="cvInput"></textarea>
+                </div>
+                <div class="inputBlock">
+                    <label>Education details</label>
+                    <textarea required id="edu" type="text" class="cvInput"></textarea>
+                </div>
+                
+                <div class="inputBlock">
+                    <label>Declaration</label>
+                    <textarea required id="declaration" type="text" class="cvInput">I hereby declare that all the information said above is true to the best of my knowledge and 
+                        belief</textarea>
+                    <!-- <input id="declaration" type="text" class="cvInput" value="I hereby declare that all the information said above is true to the best of my knowledge and belief"> -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <button type="submit" style="margin: auto; display: block; width: 20rem; height: 2rem; font-size: larger; 
+        background-color: green; color: white; border-radius: 10rem;" onclick="onSubmitForm()">Submit</button>
+    </form>
+</body>
+</html>

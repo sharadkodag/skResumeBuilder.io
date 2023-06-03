@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pBlock{
+            background-color: rgb(208, 213, 213);
+        }
+    </style>
+    <script>
+    </script>
+
+</head>
+<body>
+    <div>
+        <h1 style="text-align: center;">Resume</h1>
+        <div>
+            <p style="margin: 0px;" id="name"></p>
+            <p style="margin: 0px;" id="contact"></p>
+            <p style="margin: 0px;" id="email"></p>
+            <p style="margin: 0px;" id="address"></p>
+        </div>
+        <hr>
+        <div>
+            <p class="pBlock">Objective</p>
+            <p id="objective"></p>
+        </div>
+        <div>
+            <p class="pBlock">Profile Summery</p>
+            <p id="skill"></p>
+        </div>
+        <div>
+            <p class="pBlock">Experience</p>
+            <p id="exp"></p>
+        </div>
+        <div>
+            <p class="pBlock">Academic Summery</p>
+            <p id="edu"></p>
+        </div>
+        <div>
+            <p class="pBlock">Personal Details</p>
+            <ul>
+                <li id="dob"></li>
+                <li id="gender"></li>
+                <li id="marital"></li>
+                <li id="nationality"></li>
+                <li id="lang"></li>
+            </ul>
+        </div>
+        <div>
+            <p class="pBlock">Declaration</p>
+            <p id="declaration"></p>
+        </div>
+        <br>
+        <div>
+            <p style="margin: 0px;" id="date"> </p>
+            Place : <p style="margin: 0px;" id="place"></p>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            var date = new Date();
+            document.getElementById('objective').innerHTML=localStorage.getItem('objective');
+            document.getElementById('name').innerHTML= "&#128100; " + localStorage.getItem('name');
+            document.getElementById('address').innerHTML= "&#128204;" + localStorage.getItem('address');
+            document.getElementById('email').innerHTML= "&#9993;  " + localStorage.getItem('email');
+            document.getElementById('contact').innerHTML= "&#128222; " + localStorage.getItem('contact');
+            document.getElementById('edu').innerHTML=localStorage.getItem('edu');
+            document.getElementById('exp').innerHTML=localStorage.getItem('exp');
+            document.getElementById('declaration').innerHTML=localStorage.getItem('declaration');
+            document.getElementById('skill').innerHTML=localStorage.getItem('skill');
+            document.getElementById('gender').innerHTML=localStorage.getItem('gender');
+            document.getElementById('dob').innerHTML=localStorage.getItem('dob');
+            document.getElementById('nationality').innerHTML=localStorage.getItem('nationality');
+            document.getElementById('lang').innerHTML=localStorage.getItem('lang');
+            document.getElementById('marital').innerHTML=localStorage.getItem('marital');
+            document.getElementById('date').innerHTML= "Date : " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+
+        }
+    </script>
+</body>
+</html>
