@@ -10,10 +10,95 @@
         function onBack(){
             window.open("./index.html", "_self");
         }
+        var exp = 0;
+        function addExp(){
+            var div = document.createElement('div');
+            div.setAttribute('id', 'exp' + ++exp);
+            div.style.marginBottom = '1rem';
+            console.log(div.id);
+            var input = document.createElement('input');
+            input.setAttribute('class', 'expVal');
+            input.style.width = '80%';
+            input.style.height = '2rem';
+            var removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove'
+            removeBtn.style.height = '2rem';
+            removeBtn.style.width = '18%';
+            removeBtn.style.marginLeft = '5px';
+            removeBtn.setAttribute('type', "button");
+            removeBtn.setAttribute('id', 'exp' + exp);
+            div.appendChild(input);
+            div.appendChild(removeBtn);
+            document.getElementById('expBlock').appendChild(div);
+            removeBtn.addEventListener('click', function(e){
+                var target = e.target || e.srcElement;
+                console.log(target);
+                var text = target.id;  
+                document.getElementById(text).remove();
+            });
+        }
+
+        var edu = 0;
+        function addEdu(){
+            var div = document.createElement('div');
+            div.setAttribute('id', 'edu' + ++edu);
+            div.style.marginBottom = '1rem';
+            console.log(div.id);
+            var input = document.createElement('input');
+            input.setAttribute('class', 'edu eduVal');
+            input.style.width = '80%';
+            input.style.height = '2rem';
+            var removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove'
+            removeBtn.style.height = '2rem';
+            removeBtn.style.width = '18%';
+            removeBtn.style.marginLeft = '5px';
+            removeBtn.setAttribute('type', "button");
+            removeBtn.setAttribute('class', 'edu' + edu);
+            div.appendChild(input);
+            div.appendChild(removeBtn);
+            document.getElementById('eduBlock').appendChild(div);
+            removeBtn.addEventListener('click', function(e){
+                var target = e.target || e.srcElement;
+                console.log(target);
+                var text = target.className;  
+                document.getElementById(text).remove();
+            });
+        }
+
+        var skill = 0;
+        function addSkill(){
+            var div = document.createElement('div');
+            div.setAttribute('id', 'skill' + ++skill);
+            div.style.marginBottom = '1rem';
+            console.log(div.id);
+            var input = document.createElement('input');
+            input.setAttribute('class', 'skill skillVal');
+            input.style.width = '80%';
+            input.style.height = '2rem';
+            var removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove'
+            removeBtn.style.height = '2rem';
+            removeBtn.style.width = '18%';
+            removeBtn.style.marginLeft = '5px';
+            removeBtn.setAttribute('type', "button");
+            removeBtn.setAttribute('id', 'skill' + skill);
+            div.appendChild(input);
+            div.appendChild(removeBtn);
+            document.getElementById('skillBlock').appendChild(div);
+            removeBtn.addEventListener('click', function(e){
+                var target = e.target || e.srcElement;
+                console.log(target);
+                var text = target.id;  
+                document.getElementById(text).remove();
+            });
+        }
 
         function onSubmitForm(){
             if(validateForm())
             {
+                var list = document.querySelectorAll('exp');
+                console.log(typeof list);
                 localStorage.setItem("name", document.getElementById('name').value);
                 localStorage.setItem("address", document.getElementById('address').value);
                 localStorage.setItem("edu", document.getElementById('edu').value);
@@ -28,6 +113,32 @@
                 localStorage.setItem("nationality", document.getElementById('nationality').value);
                 localStorage.setItem("lang", document.getElementById('lang').value);
                 localStorage.setItem("marital", document.getElementById('marital').value);
+                
+                console.log(document.querySelector('.expVal'));
+                var expList = document.querySelectorAll('.expVal');
+                var expList2 = [];
+                for(let i=0; i < expList.length; i++){
+                    expList2[i] = expList[i].value;
+                }
+                console.log(expList2.length);
+                localStorage.setItem("exp1", expList2);
+
+                var skillList = document.querySelectorAll('.skillVal');
+                var skillList2 = [];
+                for(let i=0; i < skillList.length; i++){
+                    skillList2[i] = skillList[i].value;
+                }
+                console.log(skillList2.length);
+                localStorage.setItem("skill1", skillList2);
+
+                var eduList = document.querySelectorAll('.eduVal');
+                var eduList2 = [];
+                for(let i=0; i < eduList.length; i++){
+                    eduList2[i] = eduList[i].value;
+                }
+                console.log(eduList2.length);
+                localStorage.setItem("edu1", eduList2);
+
                 window.open("./cv.html", "_self");
             }
         }
@@ -69,7 +180,7 @@
     color: white; height: 3rem;">Fill your details</h1>
     <form name="form" onsubmit="return false">
         <div style="display: flex;">
-            <div style="flex: 1;">
+            <div id="col1" style="flex: 1;">
                 <div class="inputBlock">
                     <label>Objective</label>
                     <input required id="objective" type="text" class="cvInput" value="A challenging position that will utilize my extensive technical skill and will lead me to innovative work 
@@ -94,16 +205,19 @@
                         <option value="Other citizen">Other citizen</option>
                     </select>
                 </div>
-                <div class="inputBlock">
+                <div id="expBlock" class="inputBlock">
                     <label>Experience</label>
-                    <textarea id="exp" type="text" class="cvInput"></textarea>
+                    <div style="align-items: center; justify-items: center;">
+                        <textarea id="exp" type="text" class="cvInput expVal"></textarea>
+                        <button type="button" onclick="addExp()">&#10133;</button>
+                    </div>
                 </div>
                 <div class="inputBlock">
                     <label>Known languages</label>
                     <input required id="lang" type="text" class="cvInput">
                 </div>
             </div>
-            <div style="flex: 1;">
+            <div id="col2" style="flex: 1;">
                 <div class="inputBlock">
                     <label>Name</label>
                     <input required id="name" type="text" class="cvInput">
@@ -128,13 +242,15 @@
                         <option value="Divorced">Divorced</option>
                     </select>
                 </div>
-                <div class="inputBlock">
+                <div id="skillBlock" class="inputBlock">
                     <label>Skill</label>
-                    <textarea id="skill" type="text" class="cvInput"></textarea>
+                    <textarea id="skill" type="text" class="cvInput skillVal"></textarea>
+                    <button type="button" onclick="addSkill()">&#10133;</button>
                 </div>
-                <div class="inputBlock">
+                <div id="eduBlock" class="inputBlock">
                     <label>Education details</label>
-                    <textarea required id="edu" type="text" class="cvInput"></textarea>
+                    <textarea required id="edu" type="text" class="cvInput eduVal"></textarea>
+                    <button type="button" onclick="addEdu()">&#10133;</button>
                 </div>
                 
                 <div class="inputBlock">
